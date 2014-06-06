@@ -1,17 +1,20 @@
 %define upstream_name    Hash-AutoHash-Args
-%define upstream_version 1.12
+%define upstream_version 1.18
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Release:    1
 
 Summary:    Object-oriented processing of argument lists (version 0)
+
 License:    GPL+ or Artistic
 Group:      Development/Perl
 Url:        http://search.cpan.org/dist/%{upstream_name}
 Source0:    http://www.cpan.org/modules/by-module/Hash/%{upstream_name}-%{upstream_version}.tar.gz
 
 BuildRequires: perl(Carp)
+BuildRequires: perl(Test::Pod::Content)
+BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Exporter)
 BuildRequires: perl(Hash::AutoHash)
 BuildRequires: perl(Scalar::Util)
@@ -20,7 +23,6 @@ BuildRequires: perl(Test::More)
 BuildRequires: perl(Tie::Hash)
 BuildRequires: perl(Module::Build::Compat)
 BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This class simplifies the handling of keyword argument lists. It replaces
@@ -42,20 +44,17 @@ a HASH . It normalizes the keywords to ignore case and leading dashes
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 
-%{make}
+%make
 
 %check
-%{make} test
+%make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
 %clean
-rm -rf %buildroot
 
 %files
-%defattr(-,root,root)
 %doc Changes README
 %{_mandir}/man3/*
 %perl_vendorlib/*
@@ -83,3 +82,4 @@ rm -rf %buildroot
 
 * Tue Nov 17 2009 cpan2dist 1.10-1mdv
 - initial mdv release, generated with cpan2dist
+
