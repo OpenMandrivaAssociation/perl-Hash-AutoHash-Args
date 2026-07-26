@@ -1,16 +1,14 @@
 %define upstream_name    Hash-AutoHash-Args
-%define upstream_version 1.18
-
 Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    3
+Version:    1.18
+Release:    4
 
 Summary:    Object-oriented processing of argument lists (version 0)
 
 License:    GPL+ or Artistic
 Group:      Development/Perl
-Url:        https://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Hash/%{upstream_name}-%{upstream_version}.tar.gz
+Url:        https://metacpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/Hash/%{upstream_name}-%{version}.tar.gz
 
 BuildRequires:	make
 BuildRequires: perl(Carp)
@@ -40,7 +38,7 @@ a HASH . It normalizes the keywords to ignore case and leading dashes
   name, -name, -NAME, --NAME, Name, -Name
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
